@@ -26,10 +26,10 @@
   width: 100%;
   min-height: 500px;
   background-size: cover;
-  background-position: center bottom;
+  background-position: center;
   display: flex;
-  align-items: flex-end;     /* Default: content at bottom */
-  justify-content: flex-start; /* Default: left align */
+  align-items: flex-end;
+  justify-content: flex-start;
   padding: 8rem 2rem 2rem 2rem;
 }
 
@@ -57,13 +57,12 @@
   color:#fff;
   background:#000;
   background-image:linear-gradient(to right,
-                                   #ffd700 0 0); /* yellow overlay     */
+                                   #ffd700 0 0); /* yellow overlay */
   background-size:0% 100%;
   background-repeat:no-repeat;
   transition:background-size .35s,color .3s;
 }
 
-/* hover */
 .banner-center .cta.secondary:hover{
   background-size:100% 100%;
   color:#000;
@@ -82,31 +81,30 @@
   .banner-hero {
     align-items: flex-start;
     justify-content: center;
-    background-position: center 140px;
-    min-height: 420px;
-    padding: 2rem 1rem 1.5rem;
+    background-repeat: no-repeat;
+    background-size: 686px auto;
+    background-position: -140px 157px;
+    min-height: 430px;
+    padding: 1.75rem 1rem 1rem;
   }
 
   .banner-center {
-    max-width: 100%;
     text-align: center;
   }
 
   .banner-headline {
     text-align: inherit;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
   }
 
   .banner-description {
     text-align: inherit;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    font-size: 0.8rem;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Truncate long text */
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
 }
 </style>
