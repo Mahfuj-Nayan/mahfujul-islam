@@ -1,12 +1,22 @@
 <section class="custom-banner">
-  <!-- ===== 38-62 SPLIT ===== -->
+  <!-- ===== HERO: background only ===== -->
+  <div
+    class="banner-hero"
+    style="
+      background-image:
+        {% if section.settings.background_image != blank %}
+          url('{{ section.settings.background_image | image_url: width: 1440 }}')
+        {% endif %};
+    "
+  ></div>
+
+  <!-- ===== 38-62 SPLIT (copy first) ===== -->
   <div class="banner-split">
     <!-- 38 % COPY (left) -->
     <div class="split-copy">
       <h2 class="banner-headline">{{ section.settings.headline }}</h2>
       <p  class="banner-description">{{ section.settings.description }}</p>
-      <!-- desktop-only button -->
-      <button class="cta secondary copy-cta">{{ section.settings.shop_text }} →</button>
+      <button class="cta secondary">{{ section.settings.shop_text }} →</button>
     </div>
 
     <!-- 62 % IMAGE (right) -->
@@ -19,9 +29,6 @@
           {% endif %};
       "
     ></div>
-
-    <!-- mobile-only button (below the image) -->
-    <button class="cta secondary mobile-cta">{{ section.settings.shop_text }} →</button>
   </div>
 
   <!-- ===== FOOTER ===== -->
@@ -35,31 +42,38 @@
 
 .custom-banner{display:flex;flex-direction:column;width:100%;}
 
-/* ----- SPLIT (desktop) ----- */
+/* ----- HERO ----- */
+.banner-hero{
+  width:100%;min-height:var(--banner-h);
+  background-size:cover;background-position:center bottom;
+}
+
+/* ----- SPLIT ----- */
 .banner-split{display:flex;width:100%;min-height:var(--banner-h);}
+
 .split-copy{
   flex:0 0 38%;
   display:flex;flex-direction:column;justify-content:center;
   padding:0 5%;
 }
+
 .split-img{
   flex:0 0 62%;
-  background-size:cover;background-position:center;
+  background-position:left top;
 }
 
-/* text */
 .banner-headline{font-size:3rem;font-weight:700;margin-bottom:1rem;}
 .banner-description{font-size:1rem;line-height:1.5;margin-bottom:1.5rem;}
 
-/* buttons */
+/* button */
 .cta.secondary{
+  max-width:200px;
   padding:.75rem 1.5rem;border:none;cursor:pointer;color:#fff;background:#000;
   background-image:linear-gradient(to right,#ffd700 0 0);
   background-size:0% 100%;background-repeat:no-repeat;
   transition:background-size .35s,color .3s;
 }
 .cta.secondary:hover{background-size:100% 100%;color:#000;}
-.mobile-cta{display:none;}   /* hidden on desktop */
 
 /* ----- FOOTER ----- */
 .banner-footer{
@@ -67,26 +81,17 @@
   background:#f8f8f8;border-top:1px solid #ddd;
 }
 
-/* ----- MOBILE (≤ 768 px) ----- */
-@media (max-width:768px){
-  /* order: text → image → button */
-  .banner-split{
-    display: grid;
-    grid-template-areas: "copy" "image" "button";
-  }
-  .split-copy {grid-area:copy;text-align:center;padding:2rem 1rem;}
-  .split-img  {grid-area:image;height:55vw;}
-  .mobile-cta {grid-area:button;display:block;margin:1.5rem auto 2rem;width:90%;}
-  .copy-cta   {display:none;}       /* hide desktop button */
-
+/* ----- MOBILE STACK ----- */
+@media(max-width:768px){
+  .banner-split{flex-direction:column;min-height:auto;}
+  .split-img{flex:0 0 100%;height:55vw;}
+  .split-copy{flex:0 0 100%;padding:2rem 1rem;text-align:center;}
+  .cta.secondary{width:100%;max-width:none;margin-top:1rem;}
   .banner-headline{font-size:1.6rem;}
-    .banner-description {
-    text-align: inherit;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;
-  }
+  .banner-description{text-align: inherit;font-size:.9rem;display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
 }
 </style>
+
 {% schema %}
 {
   "name": "Custom Banner",
