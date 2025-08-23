@@ -117,10 +117,32 @@
         "enable_transparent_header_collection": false,
         "collection_color_scheme": "default"
       }
+    },
+    "custom_header_ExiNHN": {
+      "type": "custom-header",
+      "name": "Custom Header",
+      "settings": {
+        "logo_text": "TISSO VISON",
+        "tagline": "Get started with your “Mi Solo” kit",
+        "cta_text": "CHOOSE GIFT"
+      }
+    },
+    "custom_banner_DWzzkj": {
+      "type": "custom-banner",
+      "name": "Custom Banner",
+      "settings": {
+        "headline": "The Gift Guide",
+        "description": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.",
+        "shop_text": "SHOP NOW",
+        "bottom_text": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "background_image": "shopify://shop_images/destop_banner.png"
+      }
     }
   },
   "order": [
     "header_announcements_9jGBFp",
-    "header_section"
+    "header_section",
+    "custom_header_ExiNHN",
+    "custom_banner_DWzzkj"
   ]
 }
