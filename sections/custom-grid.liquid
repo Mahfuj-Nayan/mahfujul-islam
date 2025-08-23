@@ -1,0 +1,104 @@
+{% comment %}  Tisso – Vision in the wild (grid + pins)  {% endcomment %}
+
+<section class="tisso-product-grid">
+  <h2 class="tisso-title">Tisso vison in the wild</h2>
+
+  <div class="tisso-grid">
+    {% for i in (1..6) %}
+      {% assign product_key = 'product_' | append: i %}
+      {% assign prod_handle = section.settings[product_key] %}
+
+      {% if prod_handle %}
+        {% assign product = all_products[prod_handle] %}
+        {% assign x_key = product_key | append: '_x' %}
+        {% assign y_key = product_key | append: '_y' %}
+
+        <div class="tisso-item" data-handle="{{ product.handle }}">
+          {%- if product.featured_image -%}
+            <img
+              src="{{ product.featured_image | image_url: width: 600 }}"
+              alt="{{ product.title | escape }}"
+              width="600"
+              height="375"
+              loading="lazy">
+          {%- endif -%}
+
+          <!-- hotspot the JS will hook onto -->
+          <button
+            class="open-popup tisso-pin"
+            data-handle="{{ product.handle }}"
+            style="
+              top:{{ section.settings[y_key] }}%;
+              left:{{ section.settings[x_key] }}%;
+              transform:translate(-50%,-50%);
+            ">
+            <span></span>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<style>
+/* ---- GRID LAYOUT ---- */
+.tisso-product-grid{padding:2rem;}
+.tisso-title{margin:0 0 1.5rem;font-size:1.6rem;font-weight:600;text-align:left;}
+
+.tisso-grid{
+  display:grid !important;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+}
+@media(max-width:1024px){ .tisso-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:768px){  .tisso-grid{grid-template-columns:repeat(2,1fr);} }
+
+/* ---- ITEM & IMAGE ---- */
+.tisso-item{position:relative;overflow:hidden;border-radius:4px;}
+.tisso-item img{width:100%;height:250px;object-fit:cover;display:block;}
+
+/* ---- HOTSPOT PIN (matches screenshot) ---- */
+.tisso-pin{
+  position:absolute;
+  width:24px;height:24px;border-radius:50%;
+  background:#fff;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.25);
+  border:none;padding:0;
+}
+.tisso-pin::before{content:'';position:absolute;inset:-3px;}
+.tisso-pin::after,
+.tisso-pin span{content:'';position:absolute;background:#000;}
+.tisso-pin::after{width:10px;height:2px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.tisso-pin span{width:2px;height:10px;top:50%;left:50%;transform:translate(-50%,-50%);}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "settings": [
+    { "type":"product","id":"product_1","label":"Product 1"},
+    { "type":"range","id":"product_1_x","label":"Product 1 – Hotspot X (%)","min":0,"max":100,"step":1,"default":50},
+    { "type":"range","id":"product_1_y","label":"Product 1 – Hotspot Y (%)","min":0,"max":100,"step":1,"default":50},
+
+    { "type":"product","id":"product_2","label":"Product 2"},
+    { "type":"range","id":"product_2_x","label":"Product 2 – Hotspot X (%)","min":0,"max":100,"step":1,"default":50},
+    { "type":"range","id":"product_2_y","label":"Product 2 – Hotspot Y (%)","min":0,"max":100,"step":1,"default":50},
+
+    { "type":"product","id":"product_3","label":"Product 3"},
+    { "type":"range","id":"product_3_x","label":"Product 3 – Hotspot X (%)","min":0,"max":100,"step":1,"default":50},
+    { "type":"range","id":"product_3_y","label":"Product 3 – Hotspot Y (%)","min":0,"max":100,"step":1,"default":50},
+
+    { "type":"product","id":"product_4","label":"Product 4"},
+    { "type":"range","id":"product_4_x","label":"Product 4 – Hotspot X (%)","min":0,"max":100,"step":1,"default":50},
+    { "type":"range","id":"product_4_y","label":"Product 4 – Hotspot Y (%)","min":0,"max":100,"step":1,"default":50},
+
+    { "type":"product","id":"product_5","label":"Product 5"},
+    { "type":"range","id":"product_5_x","label":"Product 5 – Hotspot X (%)","min":0,"max":100,"step":1,"default":50},
+    { "type":"range","id":"product_5_y","label":"Product 5 – Hotspot Y (%)","min":0,"max":100,"step":1,"default":50},
+
+    { "type":"product","id":"product_6","label":"Product 6"},
+    { "type":"range","id":"product_6_x","label":"Product 6 – Hotspot X (%)","min":0,"max":100,"step":1,"default":50},
+    { "type":"range","id":"product_6_y","label":"Product 6 – Hotspot Y (%)","min":0,"max":100,"step":1,"default":50}
+  ],
+  "presets":[{ "name":"Custom Product Grid" }]
+}
+{% endschema %}
