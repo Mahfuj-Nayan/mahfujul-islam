@@ -202,9 +202,34 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "custom_grid_rbN6d6": {
+      "type": "custom-grid",
+      "name": "Custom Product Grid",
+      "settings": {
+        "product_1": "black-leather-bag",
+        "product_1_x": 88,
+        "product_1_y": 19,
+        "product_2": "blue-silk-tuxedo",
+        "product_2_x": 81,
+        "product_2_y": 71,
+        "product_3": "chequered-red-shirt",
+        "product_3_x": 87,
+        "product_3_y": 37,
+        "product_4": "classic-leather-jacket",
+        "product_4_x": 50,
+        "product_4_y": 75,
+        "product_5": "classic-varsity-top",
+        "product_5_x": 83,
+        "product_5_y": 13,
+        "product_6": "dark-denim-top",
+        "product_6_x": 23,
+        "product_6_y": 74
+      }
     }
   },
   "order": [
-    "product_list_fa6P9H"
+    "product_list_fa6P9H",
+    "custom_grid_rbN6d6"
   ]
 }
