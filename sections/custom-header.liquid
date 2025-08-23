@@ -1,0 +1,153 @@
+<section class="custom-header">
+  <div class="header-inner">
+    <!-- Custom Menu Toggle (Left) -->
+    <button class="menu-toggle mobile-only" aria-label="Menu"></button>
+
+    <!-- Logo Centered -->
+    <div class="header-logo">{{ section.settings.logo_text }}</div>
+
+    <!-- Desktop CTA -->
+    <button class="cta primary desktop-only">{{ section.settings.cta_text }} →</button>
+  </div>
+
+  <!-- Slide Menu Content -->
+  <div class="mobile-menu">
+    <p class="menu-tagline">{{ section.settings.tagline }}</p>
+    <button class="cta primary">{{ section.settings.cta_text }} →</button>
+  </div>
+</section>
+
+<style>
+/* Basic Header */
+.custom-header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 1.5rem;
+  position: relative;
+  z-index: 1000;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Logo */
+.header-logo {
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+  font-size: 1.2rem;
+  font-weight: 600;
+  pointer-events:none;
+
+}
+
+/* CTA Button */
+.cta.primary{
+    margin-left:auto;
+  background:#ffd700;
+  color:#000;
+
+  padding:.6rem 1.2rem;
+  border:none;
+  cursor:pointer;
+  font-size:.9rem;
+  letter-spacing:.5px;
+
+  /* wipe setup */
+  background-image:linear-gradient(to right,#000 0 0); /* black layer */
+  background-size:0% 100%;                       /* hidden at start */
+  background-repeat:no-repeat;
+  transition:background-size .35s,color .35s;
+}
+
+.cta.primary:hover{
+  background-size:100% 100%;  /* slide black left → right */
+  color:#fff;                 /* white text for contrast  */
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  background: #fff;
+  border-top: 1px solid #ddd;
+  position: absolute;
+  top: 100%; /* Directly under header */
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-tagline {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Mobile Toggle Button */
+.menu-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.menu-toggle::before {
+  content: '☰';
+  font-size: 1.5rem;
+}
+.menu-toggle.open::before {
+  content: '✕';
+}
+
+/* Responsive Rules */
+.desktop-only { display: inline-block; }
+.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only { display: inline-block; }
+  .header-logo { text-align: center; }
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.querySelector('.menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+
+  toggleBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('active');
+    toggleBtn.classList.toggle('open', isOpen);
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    { "type": "text", "id": "logo_text", "label": "Logo Text", "default": "TISSO VISON" },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Get started with your “Mi Solo” kit" },
+    { "type": "text", "id": "cta_text", "label": "CTA Text", "default": "CHOOSE GIFT" }
+  ],
+  "presets": [
+    { "name": "Custom Header" }
+  ]
+}
+{% endschema %}

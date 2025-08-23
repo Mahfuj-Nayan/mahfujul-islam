@@ -1,0 +1,128 @@
+<section class="custom-banner">
+  <!-- Hero Background -->
+  <div class="banner-hero" style="background-image: {% if section.settings.background_image != blank %}url('{{ section.settings.background_image | image_url: width: 1600 }}'){% endif %};">
+    <div class="banner-center">
+      <h2 class="banner-headline">{{ section.settings.headline }}</h2>
+      <p class="banner-description">{{ section.settings.description }}</p>
+      <button class="cta secondary">{{ section.settings.shop_text }} →</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="banner-footer">
+    <p>{{ section.settings.bottom_text }}</p>
+  </div>
+</section>
+
+<style>
+.custom-banner {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ===== HERO ===== */
+.banner-hero {
+  width: 100%;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center bottom;
+  display: flex;
+  align-items: flex-end;     /* Default: content at bottom */
+  justify-content: flex-start; /* Default: left align */
+  padding: 8rem 2rem 2rem 2rem;
+}
+
+.banner-center {
+  max-width: 400px;
+  text-align: left;
+}
+
+.banner-headline {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.banner-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.banner-center .cta.secondary{
+  padding:0.75rem 1.5rem;
+  border:none;
+  cursor:pointer;
+  color:#fff;
+  background:#000;
+  background-image:linear-gradient(to right,
+                                   #ffd700 0 0); /* yellow overlay     */
+  background-size:0% 100%;
+  background-repeat:no-repeat;
+  transition:background-size .35s,color .3s;
+}
+
+/* hover */
+.banner-center .cta.secondary:hover{
+  background-size:100% 100%;
+  color:#000;
+}
+/* ===== FOOTER ===== */
+.banner-footer {
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 0.8rem;
+  background: #f8f8f8;
+  border-top: 1px solid #ddd;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px) {
+  .banner-hero {
+    align-items: flex-start;
+    justify-content: center;
+    background-position: center 140px;
+    min-height: 420px;
+    padding: 2rem 1rem 1.5rem;
+  }
+
+  .banner-center {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .banner-headline {
+    text-align: inherit;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-description {
+    text-align: inherit;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Truncate long text */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    { "type": "text", "id": "headline", "label": "Headline", "default": "The Gift Guide" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season." },
+    { "type": "text", "id": "shop_text", "label": "Shop Button Text", "default": "SHOP NOW" },
+    { "type": "text", "id": "bottom_text", "label": "Bottom Text", "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL" },
+    { "type": "image_picker", "id": "background_image", "label": "Background Image" }
+  ],
+  "presets": [
+    { "name": "Custom Banner" }
+  ]
+}
+{% endschema %}
