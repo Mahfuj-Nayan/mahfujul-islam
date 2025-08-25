@@ -88,27 +88,28 @@
 /* ===== MOBILE  (max-width: 768px) ===== */
 @media (max-width: 768px){
   .custom-banner         {display:flex;flex-direction:column;}
-  .banner-split{
-    order:1;
-    display:block;
+    .banner-split{
+    order:1; 
+    display:block; 
     width:100%;
-    padding:0;
-  .banner-hero           {order:2;}
+    padding:0; 
+  }
+  .banner-hero           {order:2;}  
   .banner-footer         {order:3;}
 
   /* 1) hide the split-layout picture, we only need the hero image  */
   .split-img             {display:none;}
 
-  /* 2) typographic tweaks for the copy    */
+  /* 2) typographic tweaks for the copy                             */
   .split-copy{
-    flex:none !important; /* overrides 'flex:0 0 38%'    */
+    flex:none !important; /* overrides 'flex:0 0 38%'            */
     width:100%;
     max-width:100%;
     padding:1rem 1rem 1.25rem;
     text-align:center;
   }
   .banner-headline       {font-size:1.6rem;margin-bottom:.8rem;}
-  .banner-description{text-align: inherit;font-size:.9rem;display: -webkit-box; -webkit-line-clamp: 2;-webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;}
+  .banner-description    {font-size:.9rem;line-height:1.4;margin:0 0 .9rem;}
 
   /* 3) hero image sizing                                           */
   .banner-hero{
@@ -133,7 +134,7 @@
 
 /* ===== DESKTOP / TABLET (> 768px) ===== */
 @media (min-width: 769px){
-  .cta--mobile {display:none;}
+  .cta--mobile {display:none;}        /* never show mobile button    */
   .cta--desktop{display:inline-block;}
 }
 
