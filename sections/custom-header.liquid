@@ -1,14 +1,17 @@
 <section class="custom-header">
-  <div class="header-inner">
-    <!-- Custom Menu Toggle (Left) -->
-    <button class="menu-toggle mobile-only" aria-label="Menu"></button>
+<div class="header-inner">
+  <!-- Menu toggle (mobile only) -->
+  <button class="menu-toggle mobile-only" aria-label="Menu"></button>
 
-    <!-- Logo Centered -->
-    <div class="header-logo">{{ section.settings.logo_text }}</div>
+  <!-- 1-a  Logo – stays left on desktop  -->
+  <div class="header-logo">{{ section.settings.logo_text }}</div>
 
-    <!-- Desktop CTA -->
-    <button class="cta primary desktop-only">{{ section.settings.cta_text }} →</button>
-  </div>
+  <!-- 1-b  Tagline – visible only on desktop  -->
+  <div class="header-tagline desktop-only">{{ section.settings.tagline }}</div>
+
+  <!-- CTA – right edge on desktop -->
+  <button class="cta primary desktop-only">{{ section.settings.cta_text }} →</button>
+</div>
 
   <!-- Slide Menu Content -->
   <div class="mobile-menu">
@@ -34,19 +37,26 @@
 }
 
 /* Logo */
-.header-logo {
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-  font-size: 1.2rem;
-  font-weight: 600;
+.header-logo{
+  position:static;
+  transform:none;
+  font-size:1.2rem;
+  font-weight:600;
+}
+.header-tagline{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%, -50%);
+  font-size:1rem;
+  font-weight:500;
   pointer-events:none;
-
+  white-space:nowrap;
 }
 
 /* CTA Button */
 .cta.primary{
-    margin-left:auto;
+  margin-left:auto;
   background:#ffd700;
   color:#000;
 
@@ -58,14 +68,14 @@
 
   /* wipe setup */
   background-image:linear-gradient(to right,#000 0 0); /* black layer */
-  background-size:0% 100%;                       /* hidden at start */
+  background-size:0% 100%;    /* hidden at start */
   background-repeat:no-repeat;
   transition:background-size .35s,color .35s;
 }
 
 .cta.primary:hover{
   background-size:100% 100%;  /* slide black left → right */
-  color:#fff;                 /* white text for contrast  */
+  color:#fff;     /* white text for contrast  */
 }
 
 /* Mobile Menu */
@@ -121,7 +131,13 @@
 @media (max-width: 768px) {
   .desktop-only { display: none; }
   .mobile-only { display: inline-block; }
-  .header-logo { text-align: center; }
+  .header-logo{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  .header-tagline{ display:none; }
 }
 
 </style>
