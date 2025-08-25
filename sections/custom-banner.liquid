@@ -88,21 +88,21 @@
 /* ===== MOBILE  (max-width: 768px) ===== */
 @media (max-width: 768px){
   .custom-banner         {display:flex;flex-direction:column;}
-    .banner-split{
-    order:1;              /* keep the visual order you want      */
-    display:block;        /* kill the flexbox behaviour          */
+  .banner-split{
+    order:1;
+    display:block;
+    .banner-split { min-height: 0 !important; } 
     width:100%;
-    padding:0;            /* optional: remove side padding       */
-  }
-  .banner-hero           {order:2;}   /* image comes second           */
+    padding:0;
+  .banner-hero           {order:2;}
   .banner-footer         {order:3;}
 
   /* 1) hide the split-layout picture, we only need the hero image  */
   .split-img             {display:none;}
 
-  /* 2) typographic tweaks for the copy                             */
+  /* 2) typographic tweaks for the copy    */
   .split-copy{
-    flex:none !important; /* overrides 'flex:0 0 38%'            */
+    flex:none !important; /* overrides 'flex:0 0 38%'    */
     width:100%;
     max-width:100%;
     padding:1rem 1rem 1.25rem;
@@ -134,7 +134,7 @@
 
 /* ===== DESKTOP / TABLET (> 768px) ===== */
 @media (min-width: 769px){
-  .cta--mobile {display:none;}        /* never show mobile button    */
+  .cta--mobile {display:none;}
   .cta--desktop{display:inline-block;}
 }
 
